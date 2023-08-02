@@ -119,7 +119,6 @@ const spinCallback = inc => {
 };
 
 const attachListeners = () => {
-
   document.onkeyup = e => {
     switch (e.keyCode) {
       case 38:
@@ -127,8 +126,8 @@ const attachListeners = () => {
         break;
       case 40:
         spin(1);
-        break;}
-
+        break;
+    }
   };
 
   $controls.on('click', e => {
@@ -137,8 +136,12 @@ const attachListeners = () => {
     const $el = $(e.target);
     const toIndex = parseInt($el.attr('data-index'), 10);
     spin(toIndex - activeIndex);
-
   });
+
+  // Swipe handling
+  const hammerHandler = new Hammer($stage[0]);
+  hammerHandler.on('swipeleft', () => spin(1));
+  hammerHandler.on('swiperight', () => spin(-1));
 };
 
 const assignEls = () => {
@@ -151,8 +154,7 @@ const init = () => {
   attachListeners();
 };
 
-
-$(() => {
+$(document).ready(function () {
   init();
 });
 
@@ -233,3 +235,4 @@ var wordflick = function () {
 $(document).ready(function () {
   wordflick();
 });
+

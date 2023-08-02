@@ -6,7 +6,7 @@ body {
 }
 body {
   background: #19191a;
-  font-family: 'Dante', Garamond, Arial, sans-serif;
+  font-family: 'Dante', Garamond, sans-serif;
 }
 .js-transitions-disabled * {
   transition: none !important;
@@ -60,6 +60,8 @@ body {
   display: block;
   margin-top: -12.5%;
 }
+
+/* adjust here to modify without janking it up */
 .carousel__stage {
   position: absolute;
   top: 20px;
@@ -136,6 +138,8 @@ body {
   left: -100%;
 }
 .content__left,
+
+/* modify here as well */
 .content__right {
   position: absolute;
   left: 0;
@@ -164,7 +168,7 @@ body {
   top: 50%;
   margin-top: -3vw;
   text-align: center;
-  font-family: oswald;
+  font-family: Garamond, serif;
   font-size: 5vw;
   height: 10vw;
   opacity: 1;
@@ -178,25 +182,42 @@ body {
   font-weight: 300;
   letter-spacing: 0.2em;
   opacity: 0.9;
-  font-family: Merriweather;
+  font-family: Garamond, serif;
 }
 .content__right {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/* Default font-size for small devices (mobile-first) */
 .content__right .content__main {
   position: absolute;
-  font-family: Merriweather, serif;
-  text-align: left;
+  font-family: Garamond, serif;
+  text-align: justify;
   color: #fff;
-  font-size: 1.3vw;
+  font-size: (8px + (16 - 8) * ((100vw - 320px))); /* linear interpolation from 8px at 320px to 16px at 1200px */
   padding: 0 8vw;
   line-height: 1.65;
   font-weight: 300;
   margin: 0;
   opacity: 0.8;
 }
+
+/* Increase font size for medium devices (e.g., tablets) */
+@media (max-width: 320px) {
+  .content__right .content__main {
+    font-size: 12px; /* minimum font size*/
+  }
+}
+
+/* Increase font size for larger devices (e.g., desktops, laptops) */
+@media (min-width: 1200px) {
+  .content__right .content__main {
+    font-size: 22px; /* maximum font size */
+  }
+}
+
+
 .content__right .content__main p:last-child {
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -208,47 +229,72 @@ body {
   right: -1vh;
   top: 35vh;
   opacity: 0.04;
-  font-family: oswald;
+  font-family: Garamond, serif;
   color: #fff;
 }
-/* slide left 1 + right 1 */
+/* slide left 1 + right 1 rat park */
 [data-type="rat"] .content__left {
-  background-image: url("../src/assets/rat_park.jpg");
+  background-image: url("./assets/rat_park.jpg");
 }
 .spinner--right [data-type="rat"] .content__left {
   background-image: none;
 }
-/* slide left 2 + right 2 */
+/* slide left 2 + right 2 the non-pro */
 [data-type="pro"] .content__left {
-  background-image: url("../src/assets/the_non_pro.jpg");
+  background-image: url("./assets/the_non_pro.jpg");
 }
 .spinner--right [data-type="pro"] .content__left {
   background-image: none;
 }
-/* Slide left 3 + Slide right 3 */
+/* Slide left 3 + Slide right 3 take fountain */
 [data-type="fountain"] .content__left {
-  background-image: url("../src/assets/take_fountain.jpg");
+  background-image: url("./assets/take_fountain.jpg");
 }
 .spinner--right [data-type="fountain"] .content__left {
   background-image: none;
 }
-/* Slide Left 4 + slide right 4 */
+/* Slide Left 4 + slide right 4 freaks of the industry */
 [data-type="freaks"] .content__left {
-  background-image: url("../src/assets/freaks_of_the_industry.jpg");
+  background-image: url("./assets/freaks_of_the_industry.jpg");
 }
 .spinner--right [data-type="freaks"] .content__left {
   background-image: none;
 }
-/* Slide Left 5 + Slide Right 5 */
+/* Slide Left 5 + Slide Right 5 - ratpark audio book */
 [data-type="audio"] .content__left {
-  background-image: url("../src/assets/rat_park_audio_book.jpg");
+  background-image: url("./assets/rat_park_audio_book.jpg");
 }
 .spinner--right [data-type="audio"] .content__left {
   background-image: none;
 }
-/* Slide Left 5 + Slide Right 5 */
+
+/* Slide Left 6 + Slide Right 6 - excerpts */
+[data-type="excerpts"] .content__left {
+  background-image: url("./assets/excerpts.png");
+}
+.spinner--right [data-type="excerpts"] .content__left {
+  background-image: none;
+}
+
+/* Slide Left 7 + Slide Right 7 - podcasts */
+[data-type="podcasts"] .content__left {
+  background-image: url("./assets/podcast.png");
+}
+.spinner--right [data-type="podcasts"] .content__left {
+  background-image: none;
+}
+
+/* Slide Left 8 + Slide Right 8 - swag */
+[data-type="swag"] .content__left {
+  background-image: url("./assets/rat_park_shirt.png");
+}
+.spinner--right [data-type="swag"] .content__left {
+  background-image: none;
+}
+
+/* Slide Left 9 + Slide Right 9 - about */
 [data-type="about"] .content__left {
-  background-image: url("../src/assets/adam_novak.jpg");
+  background-image: url("./assets/adam_novak.jpg");
 }
 .spinner--right [data-type="about"] .content__left {
   background-image: none;
@@ -258,6 +304,119 @@ body {
 .quotes {
   margin: auto;
   color: white;
-  font: 700 normal 2.5em 'Dante';
+  font: 8px normal 2.5em 'Dante';
   text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
+}
+
+/* custom buttons */
+
+h1 .custom-btn {
+  position: relative;
+  text-align: center;
+  color: #353535;
+  font-size: 50px;
+  font-family: "Cormorant Garamond", serif;
+}
+
+p .custom-btn {
+  font-family: 'Dante', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 18px;
+  color: #676767;
+}
+
+button .custom-btn {
+  margin: 20px;
+}
+
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+
+
+
+/* Button Style 12 */
+.btn-12{
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  border:none;
+  box-shadow: none;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  -webkit-perspective: 230px;
+  perspective: 230px;
+}
+.btn-12 span {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  display: block;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  border-radius: 5px;
+  margin:0;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.btn-12 span:nth-child(1) {
+  box-shadow:
+  7px 7px 20px 0px #0002,
+  4px 4px 5px 0px #0001;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12 span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12:hover span:nth-child(1) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.btn-12:hover span:nth-child(2) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+color: transparent;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
 }
